@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+{%load static%}
+{%block content%}
+    
+    <div style = "width:80%; margin-left:auto; margin-right:auto; margin-top: 30px; color: white;">
+        
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+        {%else%}
+            <div class="alert alert-success" role="alert">
+                Registro concluido con éxito. ID: {{id}} 
+                <br>
+                A todos los participantes se les ha enviado un correo para verificar su participación
+            </div>
+        {%endif%}
+    </div>
+
+    
+{%endblock%}
