@@ -1,0 +1,167 @@
+
+{%extends "base.html"%}
+
+{%block content%}
+    
+    <div style = "width:80%; margin-left:auto; margin-right:auto; margin-top: 30px; color: white;" >
+        
+
+        
+
+        <form action = '/registro' method = 'POST'>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="container">
+                <div id = "bug_message">
+                    <p >Si estas en dispositivo móvil elige dos veces el No. de integrantes</p>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-4">
+                        
+                        <label for="exampleInputEmail1" class="form-label">No. de integrantes</label>
+                        
+                        <div class="input-group mb-3">
+                        
+                            <select class="form-select" id="inputGroupSelect02" onclick = "hello()" name = "cantidad">
+                                <option selected disabled="disabled">Elige...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Nombre del equipo</label>
+                            <input type="text" class="form-control " aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required name = "nombre_equipo" id = "equipo" onkeyup = "Call()">
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback" style="text-align: right;">
+                                El nombre no debe incluir esos caracteres
+                            </div>
+                            <div id="text" class="form-text" style = "color:antiquewhite;">Elige un nombre que cumpla los requisitos</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="exampleInputEmail1" class="form-label">Elige la categoría</label>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="inputGroupSelect02" name = "categoria">
+                                <option selected disabled="disabled">Elige...</option>
+                                <option value="1">Creación</option>
+                                <option value="2">Innovación</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id = "fields">
+
+            </span>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" required name = "codigo">
+                <label class="form-check-label" for="exampleCheck1">Hemos leído y aceptamos el <a href = "/avisodeprivacidad">aviso de privacidad</a> </label>
+            </div>
+            <div style = " width: 70%; margin-left:auto; margin-right:auto;">
+                <button type="submit" class="btn btn-primary" disabled style = "color: white;  width: 100%;" id = "go">¡Ir por la victoria!</button>
+            </div>
+            
+        </form>
+
+    </div>
+
+    <script type="text/javascript">
+        function hello(){
+            var x = document.getElementById("inputGroupSelect02").value;
+            if(x!="Elige..."){
+                console.log(x);
+                var xi = parseInt(x);
+                //document.getElementById("fields").innerHTML = '<input type = "hidden" name = "cantidad" value = "'+ xi  +'">'
+                document.getElementById("fields").innerHTML = ''
+                for (var i = 0; i < xi; i++) {
+                    document.getElementById("fields").innerHTML += '<div class="mb-3">'+
+                                                                        '<h4>'+ (i+1) + ') </h4>'+
+                                                                        '<div class="row justify-content-md-center">'+
+                                                                            '<div class="col-lg-4">'+
+                                                                                '<label for="text" class="form-label"> Nombre completo</label>'+
+                                                                                '<input type="text" class="form-control" required name = "nombre_'+ i + '">'+
+                                                                            '</div>'+
+                                                                            '<div class="col-lg-4">'+
+                                                                                '<label for="text" class="form-label">Correo institucional</label>'+
+                                                                                '<input type="email" class="form-control" required  name = "correo_'+ i + '">'+
+                                                                            '</div>'+
+                                                                            '<div class="col-lg-2 col-md-6">'+
+                                                                                '<label for="text" class="form-label">Escuela</label>'+
+                                                                                
+                                                                                '<select class="form-select escuela" required name = "escuela_'+ i + '">'+
+                                                                                    '<option value="-1" disabled>Elige...</option>'+
+                                                                                    '<option value="26">CICS Unidad Milpa Alta</option>'+
+                                                                                    '<option value="1">CICS Unidad Santo Tomás</option>'+
+                                                                                    '<option value="28">ENBA </option>'+
+                                                                                    '<option value="3">ENCB </option>'+
+                                                                                    '<option value="4">ENMyH </option>'+
+                                                                                    '<option value="5">ESCA Unidad Santo Tomás</option>'+
+                                                                                    '<option value="6">ESCA Unidad Tepepan</option>'+
+                                                                                    '<option value="7">ESCOM </option>'+
+                                                                                    '<option value="8">ESE </option>'+
+                                                                                    '<option value="9">ESEO </option>'+
+                                                                                    '<option value="10" selected>ESFM </option>'+
+                                                                                    '<option value="12">ESIME Unidad Culhuacán</option>'+
+                                                                                    '<option value="13">ESIME Unidad Ticomán</option>'+
+                                                                                    '<option value="11">ESIME Unidad Azcapotzalco</option>'+
+                                                                                    '<option value="2">ESIME Unidad Zacatenco</option>'+
+                                                                                    '<option value="14">ESIQIE </option>'+
+                                                                                    '<option value="15">ESIT </option>'+
+                                                                                    '<option value="17">ESIA Unidad Ticomán</option>'+
+                                                                                    '<option value="18">ESIA Unidad Zacatenco</option>'+
+                                                                                    '<option value="16">ESIA Unidad Tecamachalco</option>'+
+                                                                                    '<option value="19">ESM </option>'+
+                                                                                    '<option value="20">EST </option>'+
+                                                                                    '<option value="29">UPIIC Campus Coahuila</option>'+
+                                                                                    '<option value="21">UPIBI </option>'+
+                                                                                    '<option value="22">UPIIG Campus Guanajuato</option>'+
+                                                                                    '<option value="23">UPIIZ Campus Zacatecas</option>'+
+                                                                                    '<option value="27">UPIIH Campus Hidalgo</option>'+
+                                                                                    '<option value="31">UPIIP Campus Palenque</option>'+
+                                                                                    '<option value="32">UPIIT Campus Tlaxcala</option>'+
+                                                                                    '<option value="24">UPIICSA </option>'+
+                                                                                    '<option value="25">UPIITA </option>'+
+                                                                                    '<option value="30">UPIEM </option>'+
+                                                                                '</select>'+
+                                                                            '</div>'+
+                                                                            '<div class="col-lg-2  col-md-6">'+
+                                                                                '<label for="text" class="form-label">Especialidad</label>'+
+                                                                                
+                                                                                '<select class="form-select area" required name = "especialidad_'+ i + '">'+
+                                                                                    '<option value="-1" disabled>Elige...</option>'+
+                                                                                    '<option value="1">Programación</option>'+
+                                                                                    '<option value="2">Diseño</option>'+
+                                                                                    '<option value="3">Creatividad</option>'+
+                                                                                    '<option value="4">Gestión de proyectos</option>'+
+                                                                                    '<option value="4">Otra</option>'+
+                                                                                '</select>'+
+                                                                            '</div>'+
+                                                                        '</div>'+
+                                                                    '</div>';
+                 }
+
+                 document.getElementById("go").disabled = false;
+            }
+            
+        }
+        function Call()
+            {
+                var x = document.getElementById("equipo");
+                var s = x.value
+    
+                if(s.includes("'")){
+                    console.log(s)
+                    x.classList.add("is-invalid");
+                    document.getElementById("go").disabled = true;
+                }
+                else{
+                    x.classList.remove("is-invalid");
+                    document.getElementById("go").disabled = false;
+                }
+            }
+        
+    </script>
+{%endblock%}

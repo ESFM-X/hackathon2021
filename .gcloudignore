@@ -1,0 +1,14 @@
+
+.gcloudignore
+.git
+.gitignore
+.dockerignore
+# Python pycache:
+__pycache__/
+# Ignored by the build system
+/setup.cfg
+/venv
+/nginx
+docker-compose.yml
+Dockerfile
+README.md

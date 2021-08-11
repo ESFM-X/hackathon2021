@@ -1,0 +1,6 @@
+venvlinux/
+__pycache__/
+.gcloudignore
+.gitignore
+tests/
+nginx/
